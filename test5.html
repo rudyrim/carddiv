@@ -1,0 +1,139 @@
+<html>
+<head>
+    <title>Test fold</title>
+    <style>
+        body{
+
+        background-color:  purple;
+        }
+        div{
+
+          background-color: brown; 
+        }    
+        .name {
+        font-size: 22px;
+        text-transform: capitalize;
+        text-align: center;
+        }
+        .color {
+        font-size: 16px;
+        float:left;
+        }
+        .state {
+        font-size: 16px;
+        float:right;
+        }
+        .image {
+        width:100%;
+        display:flex;
+        }
+        .description {
+        font-size: 14px;
+        text-align: center;
+        }
+        .lien {
+        font-size: 14px;
+        text-align: center;
+        border-style: dotted solid;
+        padding: 10px;
+        border: 5px black;
+        width: 100%;
+        }
+
+        .container {
+        padding: 10px;
+         /* margin: 50px;*/
+        width:100%;
+        background:white;
+        display: flex;
+        border: 5px black;
+        grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+        grid-auto-flow: minmax(150px,auto);
+        grid-gap: 2rem .5rem;
+
+}
+
+div:nth-child(odd) {
+  background: sandybrown;
+}
+
+div:nth-child(even) {
+  background: salmon;
+}
+
+        </style>
+</head>
+<body>
+
+    <!--Containners-->
+    <div class="container">
+
+    </div>
+<script>
+     /* let container = document.querySelector('.container');
+
+for (let i = 1; i <= 9; i++) {
+	let myDiv = document.createElement("div");
+  if (i%2 === 0) {
+    myDiv.innerHTML = "<div class=\"cardo\">"+ i +"</div>" 
+  }
+  else {
+  	myDiv.innerHTML = "<div class=\"cardo cardo-odd\">"+ i +"</div>" 
+  }
+	container.appendChild(myDiv);
+}*/
+</script>
+<script>
+  document.getElementsByClassName('container')[0].innerHTML+= "<div class='la0'>";   
+            for( var i=0; i<10;i++){
+
+                card(i);
+            }
+ document.getElementsByClassName('container')[0].innerHTML+= "</div>"; 
+    function card(i) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+            let container = document.querySelector('.la0');
+            let myDiv= document.createElement("div");
+           
+            myDiv.innerHTML+= "<div class='la"+j+"''>"
+           // myDiv.innerHTML+= "<div id='"+i+"''>"; 
+         + myFunction(this.responseText) 
+           // container.appendChild(myDiv); 
+            +  "</div>"; 
+            var j = i++;
+            container.appendChild(myDiv);
+      }
+    };
+    xhttp.open("GET", "t"+i+".txt", true);
+    xhttp.send();
+}
+  function myFunction(responseText) {
+      let  resp= "<p class='name'>" + responseText.split("*")[0]+"</p></br>"
+        + "<p class='color-state'>"
+        +"<span class='color'>" +responseText.split("*")[1]+"</span>"
+        +"<span class='state'>" + responseText.split("*")[2]+"</span>"
+        + "</p></br>"
+        + "<p class='date'>" + responseText.split("*")[3]+"</p>"
+        +"<img class='image'src=" + responseText.split("*")[4]+">"
+        + "<p class='description'>" + responseText.split("*")[5]+"</p>"
+        + "<Button class='lien'><a href='"+responseText.split("*")[6]+"'>"
+        +responseText.split("*")[6]+"</a></Button>";   
+     return resp;
+  }
+
+</script>
+
+    <script>
+   /*     document.oncontextmenu = function() {
+  return false;
+}*/
+    </script>
+
+</body>
+
+<footer>
+    
+</footer>
+</html>
